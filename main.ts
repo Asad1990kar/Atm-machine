@@ -31,7 +31,7 @@ if ( pinNumber.pin == pinCode)
                     name: "operation",
                     type: "list",
                     message: "Select your desired option :",
-                    choices: ["Withdrawl", "Balance check"]
+                    choices: ["Withdrawl", "Deposit", "Balance check"]
                 }
             ]
         );
@@ -94,15 +94,31 @@ if ( pinNumber.pin == pinCode)
                         }
 
             }
-            else
-            {
-                console.log(`Your account balance is : ${accountBalance}`);
-            }
+            else if (accountType.operation == "Deposit")
+                {
+                    let amountDeposit = await inquirer.prompt
+                    (
+                        {
+                            name: "deposit",
+                            type: "number",
+                            message: "Enter your amount to Deposit :",
+                        }
+                    )
+
+                    accountBalance += amountDeposit.deposit;
+
+                    console.log(`Your total amount balance is : ${accountBalance}`);
+
+                }
+                else
+                {
+                    console.log(`Your account balance is : ${accountBalance}`);
+                }
 
         
-    }
-    else
-    {
-        console.log("You've entered incorrect pin code!");
-    };
+        }
+        else
+        {
+            console.log("You've entered incorrect pin code!");
+        };
     
